@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_home.*
 import kr.ac.kaist.kotlinpractice.R
+import kr.ac.kaist.kotlinpractice.data.source.image.ImageRepository
 import kr.ac.kaist.kotlinpractice.view.main.home.presenter.HomeContract
 import kr.ac.kaist.kotlinpractice.view.main.home.presenter.HomePresenter
 
@@ -16,7 +17,16 @@ import kr.ac.kaist.kotlinpractice.view.main.home.presenter.HomePresenter
 class HomeFragment : Fragment(), HomeContract.View {
 
     private val homePresenter: HomePresenter by lazy {
-        HomePresenter(this@HomeFragment)
+        HomePresenter(this@HomeFragment, ImageRepository)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View?
+            = inflater?.inflate(R.layout.fragment_home, container, false)
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        homePresenter.loadImage()
     }
 
     override fun showImage(imageName: String) {
@@ -29,15 +39,6 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     override fun showProgress() {
         progressBar.visibility = View.VISIBLE
-    }
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View?
-        = inflater?.inflate(R.layout.fragment_home, container, false)
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        homePresenter.loadImage()
     }
 }
 

@@ -1,21 +1,23 @@
 package kr.ac.kaist.kotlinpractice.view.main.home.presenter
 
 import android.os.AsyncTask
-import kr.ac.kaist.kotlinpractice.util.random
+import kr.ac.kaist.kotlinpractice.data.source.image.ImageRepository
 
 /**
  * Created by stevehan on 2018. 1. 27..
  */
-class HomePresenter(val view: HomeContract.View) : HomeContract.Presenter {
+class HomePresenter(val view: HomeContract.View,
+                    private val imageRepository: ImageRepository) : HomeContract.Presenter {
+
     override fun loadImage() {
-        ImageAsyncTask(view).execute()
+        ImageAsyncTask(view, imageRepository).execute()
     }
 
-    class ImageAsyncTask(val view: HomeContract.View): AsyncTask<Unit, Unit, String>() {
-        override fun doInBackground(vararg p0: Unit?): String {
-            Thread.sleep(1000)
+    class ImageAsyncTask(val view: HomeContract.View,
+                         val imageRepository: ImageRepository) : AsyncTask<Unit, Unit, Unit>() {
 
-            return String.format("sample_%02d", (1..10).random())
+        override fun doInBackground(vararg params: Unit?) {
+            Thread.sleep(1000)
         }
 
         override fun onPreExecute() {
@@ -24,15 +26,14 @@ class HomePresenter(val view: HomeContract.View) : HomeContract.Presenter {
             view.showProgress()
         }
 
-        override fun onPostExecute(result: String?) {
+        override fun onPostExecute(result: Unit?) {
             super.onPostExecute(result)
 
             view.hideProgress()
-            result?.let {
+
+            imageRepository.loadImageFileName {
                 view.showImage(it)
             }
         }
-
     }
-
 }
