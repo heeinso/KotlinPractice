@@ -1,5 +1,7 @@
 package kr.ac.kaist.kotlinpractice.data.source.image
 
+import kr.ac.kaist.kotlinpractice.data.ImageData
+
 /**
  * Created by stevehan on 2018. 1. 27..
  */
@@ -8,7 +10,9 @@ object ImageRepository : ImageDataSource {
         ImageLocalData()
     }
 
-    override fun loadImageFileName(fileName: (String) -> Unit) {
-        imageLocalData.loadImageFileName(fileName)
+    override fun loadImageList(imageDataList: (List<ImageData>) -> Unit, size: Int) {
+        imageLocalData.loadImageList(imageDataList, size)
     }
+
+
 }

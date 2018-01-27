@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_home.*
-import kr.ac.kaist.kotlinpractice.R
 import kr.ac.kaist.kotlinpractice.data.source.image.ImageRepository
+import kr.ac.kaist.kotlinpractice.R
 import kr.ac.kaist.kotlinpractice.view.main.home.presenter.HomeContract
 import kr.ac.kaist.kotlinpractice.view.main.home.presenter.HomePresenter
 
