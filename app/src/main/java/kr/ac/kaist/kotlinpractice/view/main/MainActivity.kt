@@ -6,18 +6,15 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.ac.kaist.kotlinpractice.R
 import kr.ac.kaist.kotlinpractice.util.replace
+import kr.ac.kaist.kotlinpractice.view.main.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val homeFragment : HomeFragment by lazy {
-        HomeFragment().apply {
-            arguments = Bundle().apply {
-                putInt(HomeFragment.KEY_TITLE, R.string.title_home)
-            }
-        }
+    private val homeFragment: HomeFragment by lazy {
+        HomeFragment()
     }
 
-    private val cameraFragment : CameraFragment by lazy {
+    private val cameraFragment: CameraFragment by lazy {
         CameraFragment().apply {
             arguments = Bundle().apply {
                 putInt(CameraFragment.KEY_TITLE, R.string.title_camera)
@@ -25,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val moreFragment : MoreFragment by lazy {
+    private val moreFragment: MoreFragment by lazy {
         MoreFragment().apply {
             arguments = Bundle().apply {
                 putInt(MoreFragment.KEY_TITLE, R.string.title_more)
@@ -40,11 +37,11 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_camera -> {
-                replace(R.id.container, homeFragment)
+                replace(R.id.container, cameraFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_more -> {
-                replace(R.id.container, homeFragment)
+                replace(R.id.container, moreFragment)
                 return@OnNavigationItemSelectedListener true
             }
         }
