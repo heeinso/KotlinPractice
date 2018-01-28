@@ -22,5 +22,6 @@ class ImageViewHolder(context: Context, parent: ViewGroup?)
     private fun View.onBind(item: ImageData) {
         tv_title.text = item.name
 //        img_view.setImageResource(resources.getIdentifier(item.fileName, "drawable", context.packageName))
+        img_view.loadImage(item.fileName)
     }
 }

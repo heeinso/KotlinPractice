@@ -13,7 +13,7 @@ import kr.ac.kaist.kotlinpractice.R
 class GlideImageLoadImageView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
     : AppCompatImageView(context, attrs, defStyleAttr) {
 
-    fun loadImage(url: String?, @DrawableRes loadingImageRes: Int = R.drawable.ic_bubble_chart_black_24dp) {
+    fun loadImage(url: String?, @DrawableRes loadingImageRes: Int = R.drawable.ic_bubble_chart_white_50dp) {
         this.setImageResource(loadingImageRes)
         Glide.with(context).load(url).into(this)
     }
